@@ -19,6 +19,7 @@ import axios from "axios";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string()
@@ -86,6 +87,8 @@ export default function Register() {
   });
 
   return (
+    <Box>
+      <Navbar />
     <form onSubmit={formik.handleSubmit}>
       <Flex
         minH={"100vh"}
@@ -217,7 +220,7 @@ export default function Register() {
               <Stack pt={6}>
                 <Text align={"center"}>
                   Already a user?{" "}
-                  <Link to="/" color={"blue.400"}>
+                  <Link color='#4299E1' to="/" >
                     Login
                   </Link>
                 </Text>
@@ -227,5 +230,6 @@ export default function Register() {
         </Stack>
       </Flex>
     </form>
+    </Box>
   );
 }

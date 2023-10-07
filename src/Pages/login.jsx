@@ -18,6 +18,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -56,6 +57,8 @@ export default function Login() {
   });
 
   return (
+    <Box>
+    <Navbar />
     <form onSubmit={formik.handleSubmit}>
       <Flex
         minH={"100vh"}
@@ -140,5 +143,6 @@ export default function Login() {
         </Stack>
       </Flex>
     </form>
+    </Box>
   );
 }

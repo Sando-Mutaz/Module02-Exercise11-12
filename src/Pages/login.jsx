@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import * as Yup from "yup";
 import { useFormik } from "formik";
@@ -17,49 +17,54 @@ import {
   FormErrorMessage,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Navbar from "./Navbar";
 
-const LoginSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Invalid email address format")
-    .required("Email is required"),
-  password: Yup.string()
-    .min(7, "Password must be 7 characters minimum")
-    .required("Password is required"),
-});
 
-export default function Login() {
-  const [data, setData] = useState([]);
+function Login() {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
 
-  const register = async (email, password) => {
-    try {
-      await axios.post("http://localhost:3000/user", {
-        email,
-        password,
-      });
+  const [usersData, setUsersData] = useState([]);
 
-      alert("success");
-    } catch (err) {
-      console.log(err);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleLogin = () => {
+    const { email, password } = formData;
+
+    // Cek login berdasarkan data JSON yang sudah dimuat
+    const user = usersData.find((user) => user.email === email && user.password === password);
+
+    if (user) {
+      setIsLoggedIn(true)
+      alert('Login Sukses')
+      console.log('Login berhasil');
+    } else {
+      alert('Email utowo Passwordmu salah')
+      console.error('Login gagal');
     }
   };
 
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema: LoginSchema,
-    onSubmit: (values) => {
-      register(values.email, values.password);
-    },
-  });
+  useEffect(() => {
+    // Gunakan Axios untuk mengambil data JSON
+    axios.get('http://localhost:3000/users')
+      .then((response) => setUsersData(response.data))
+      .catch((error) => console.error('Error loading data:', error));
+  }, []);
+
 
   return (
     <Box>
     <Navbar />
-    <form onSubmit={formik.handleSubmit}>
+    {isLoggedIn && <Navigate to="/timeline" />}
+    
       <Flex
         minH={"100vh"}
         align={"center"}
@@ -78,8 +83,6 @@ export default function Login() {
           >
             <Stack spacing={4}>
               <FormControl
-                isInvalid={formik.touched.email && formik.errors.email}
-                nb={5}
                 id="email"
               >
                 <FormLabel>Email address</FormLabel>
@@ -87,28 +90,21 @@ export default function Login() {
                   <Input
                     type="text"
                     name="email"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
+                    value={formData.email}
+                    onChange={handleChange}
                   />
                 </InputGroup>
-                {formik.touched.email && formik.errors.email && (
-                  <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
-                )}
               </FormControl>
               <FormControl
-                isInvalid={formik.touched.password && formik.errors.password}
-                nb={5}
                 id="password"
               >
                 <FormLabel>Password</FormLabel>
                 <Input
                   type="password"
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
+                  name='password'
+                  value={formData.password}
+                  onChange={handleChange}
                 />
-                {formik.touched.password && formik.errors.password && (
-                  <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-                )}
               </FormControl>
               <Stack spacing={10}>
                 <Stack
@@ -125,7 +121,7 @@ export default function Login() {
                   _hover={{
                     bg: "blue.500",
                   }}
-                  type="submit"
+                  onClick={handleLogin}
                 >
                   Sign in
                 </Button>
@@ -142,7 +138,9 @@ export default function Login() {
           </Box>
         </Stack>
       </Flex>
-    </form>
+    
     </Box>
   );
 }
+
+export default Login

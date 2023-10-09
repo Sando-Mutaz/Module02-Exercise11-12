@@ -9,6 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import Login from "./Pages/login";
 import Register from "./Pages/register";
 import UserData from "./Pages/UserData";
+import Timeline from "./Pages/Timeline";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,6 +20,7 @@ root.render(
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/user-data" element={<UserData/>} />
+          <Route path="/timeline" element={<Timeline/>} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
   Flex,
   Box,
@@ -16,7 +17,8 @@ import {
   Text,
   FormErrorMessage,
   useColorModeValue,
-  GridItem
+  GridItem,
+  InputRightElement,
 } from "@chakra-ui/react";
 import { Link, Navigate } from "react-router-dom";
 import Navbar from "./Navbar";
@@ -27,6 +29,7 @@ function Login() {
     password: "",
   });
 
+  const [showPassword, setShowPassword] = useState(false);
   const [usersData, setUsersData] = useState([]);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -99,12 +102,24 @@ function Login() {
               </FormControl>
               <FormControl id="password">
                 <FormLabel>Password</FormLabel>
+                <InputGroup>
                 <Input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
                 />
+                <InputRightElement h={"full"}>
+                    <Button
+                      variant={"ghost"}
+                      onClick={() =>
+                        setShowPassword((showPassword) => !showPassword)
+                      }
+                    >
+                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
               </FormControl>
               <Stack spacing={10}>
                 <Stack

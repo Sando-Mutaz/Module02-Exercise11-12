@@ -140,11 +140,13 @@ function App() {
         justifyContent="space-between"
       >
         {/* Left Side (Logo) */}
+        <Link to={'/timeline'}>
         <Flex marginLeft={'3rem'} alignItems={'center'} alignContent={'center'}>
           <TiSocialTwitter
           fontSize="40px"/>
           <Text as={"b"} fontSize={'20px'} margin={'auto'}>groupFour</Text>
         </Flex>
+        </Link>
 
         {/* Right Side (User Info) */}
         <HStack spacing={2} alignItems="center" mr={'60px'}>

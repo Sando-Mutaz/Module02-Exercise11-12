@@ -223,12 +223,20 @@ export default function Register() {
                   </Button>
                 </Stack>
                 <Stack pt={6}>
-                  <Text align={"center"}>
-                    Already a user?{" "}
-                    <Link color="#4299E1" to="/">
-                      Login
-                    </Link>
-                  </Text>
+                  <Box display='grid' gridTemplateColumns='1fr 1fr' columnGap='5px'>
+                <GridItem>
+                <Text align={"center"}>
+                  Already a user?{" "}
+                </Text>
+                </GridItem>
+                <GridItem>
+                <Text color='#4299E1'>
+                  <Link to="/" >
+                    Login
+                  </Link>
+                    </Text>
+                    </GridItem>
+              </Box>
                 </Stack>
               </Stack>
             </Box>

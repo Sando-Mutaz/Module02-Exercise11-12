@@ -26,24 +26,14 @@
       "tweet": "Test"
     },
     {
-      "email": "dodi@gmail.com",
-      "tweet": "",
+      "email": null,
+      "tweet": "🇮🇩",
       "id": 2
     },
     {
-      "email": "dodi@gmail.com",
-      "tweet": "",
+      "email": null,
+      "tweet": "I stand with Palestine! 🇵🇸",
       "id": 3
-    },
-    {
-      "email": "dodi@gmail.com",
-      "tweet": "abcde",
-      "id": 4
-    },
-    {
-      "email": "dodi@gmail.com",
-      "tweet": "v ii  ",
-      "id": 5
     }
   ]
 }

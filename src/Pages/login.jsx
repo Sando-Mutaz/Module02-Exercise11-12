@@ -20,11 +20,10 @@ import {
 import { Link, Navigate } from "react-router-dom";
 import Navbar from "./Navbar";
 
-
 function Login() {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const [usersData, setUsersData] = useState([]);
@@ -40,33 +39,35 @@ function Login() {
     const { email, password } = formData;
 
     // Cek login berdasarkan data JSON yang sudah dimuat
-    const user = usersData.find((user) => user.email === email && user.password === password);
+    const user = usersData.find(
+      (user) => user.email === email && user.password === password
+    );
 
     if (user) {
-      setIsLoggedIn(true)
-      alert('Login Sukses')
-      console.log('Login berhasil');
-      console.log(email)
-      localStorage.setItem("token", email)
+      setIsLoggedIn(true);
+      alert("Login Sukses");
+      console.log("Login berhasil");
+      console.log(email);
+      localStorage.setItem("token", email);
     } else {
-      alert('Email utowo Passwordmu salah')
-      console.error('Login gagal');
+      alert("Email utowo Passwordmu salah");
+      console.error("Login gagal");
     }
   };
 
   useEffect(() => {
     // Gunakan Axios untuk mengambil data JSON
-    axios.get('http://localhost:3000/users')
+    axios
+      .get("http://localhost:3000/users")
       .then((response) => setUsersData(response.data))
-      .catch((error) => console.error('Error loading data:', error));
+      .catch((error) => console.error("Error loading data:", error));
   }, []);
-
 
   return (
     <Box>
-    <Navbar />
-    {isLoggedIn && <Navigate to="/timeline" />}
-    
+      <Navbar />
+      {isLoggedIn && <Navigate to="/timeline" />}
+
       <Flex
         minH={"100vh"}
         align={"center"}
@@ -84,9 +85,7 @@ function Login() {
             p={8}
           >
             <Stack spacing={4}>
-              <FormControl
-                id="email"
-              >
+              <FormControl id="email">
                 <FormLabel>Email address</FormLabel>
                 <InputGroup>
                   <Input
@@ -97,13 +96,11 @@ function Login() {
                   />
                 </InputGroup>
               </FormControl>
-              <FormControl
-                id="password"
-              >
+              <FormControl id="password">
                 <FormLabel>Password</FormLabel>
                 <Input
                   type="password"
-                  name='password'
+                  name="password"
                   value={formData.password}
                   onChange={handleChange}
                 />
@@ -118,10 +115,11 @@ function Login() {
                   <Text color={"blue.400"}>Forgot password?</Text>
                 </Stack>
                 <Button
-                  bg={"blue.400"}
+                  bg={"teal"}
                   color={"white"}
                   _hover={{
-                    bg: "blue.500",
+                    bg: "black",
+                    color: "white",
                   }}
                   onClick={handleLogin}
                 >
@@ -140,9 +138,8 @@ function Login() {
           </Box>
         </Stack>
       </Flex>
-    
     </Box>
   );
 }
 
-export default Login
+export default Login;

@@ -56,7 +56,7 @@ export default function Register() {
 
   const register = async (username, email, password) => {
     try {
-      await axios.post("http://localhost:3000/user", {
+      await axios.post("http://localhost:3000/users", {
         username,
         email,
         password,
@@ -89,147 +89,152 @@ export default function Register() {
   return (
     <Box>
       <Navbar />
-    <form onSubmit={formik.handleSubmit}>
-      <Flex
-        minH={"100vh"}
-        align={"center"}
-        justify={"center"}
-        bg={useColorModeValue("gray.50", "gray.800")}
-      >
-        <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-          <Stack align={"center"}>
-            <Heading fontSize={"4xl"} textAlign={"center"}>
-              Register
-            </Heading>
-          </Stack>
-          <Box
-            rounded={"lg"}
-            bg={useColorModeValue("white", "gray.700")}
-            boxShadow={"lg"}
-            p={8}
-          >
-            <Stack spacing={4}>
-              <FormControl
-                isInvalid={formik.touched.username && formik.errors.username}
-                nb={5}
-                name="username"
-                id="username"
-              >
-                <FormLabel>Username</FormLabel>
-                <Input
-                  type="text"
-                  onChange={formik.handleChange}
-                  value={formik.values.username}
-                />
-                {formik.touched.username && formik.errors.username && (
-                  <FormErrorMessage>{formik.errors.username}</FormErrorMessage>
-                )}
-              </FormControl>
-              <FormControl
-                isInvalid={formik.touched.email && formik.errors.email}
-                nb={5}
-                name="email"
-                id="email"
-              >
-                <FormLabel>Email address</FormLabel>
-                <Input
-                  type="text"
-                  onChange={formik.handleChange}
-                  value={formik.values.email}
-                />
-                {formik.touched.email && formik.errors.email && (
-                  <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
-                )}
-              </FormControl>
-              <FormControl
-                isInvalid={formik.touched.password && formik.errors.password}
-                nb={5}
-                id="password"
-                name="password"
-              >
-                <FormLabel>Password</FormLabel>
-                <InputGroup>
+      <form onSubmit={formik.handleSubmit}>
+        <Flex
+          minH={"100vh"}
+          align={"center"}
+          justify={"center"}
+          bg={useColorModeValue("gray.50", "gray.800")}
+        >
+          <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+            <Stack align={"center"}>
+              <Heading fontSize={"4xl"} textAlign={"center"}>
+                Register
+              </Heading>
+            </Stack>
+            <Box
+              rounded={"lg"}
+              bg={useColorModeValue("white", "gray.700")}
+              boxShadow={"lg"}
+              p={8}
+            >
+              <Stack spacing={4}>
+                <FormControl
+                  isInvalid={formik.touched.username && formik.errors.username}
+                  nb={5}
+                  name="username"
+                  id="username"
+                >
+                  <FormLabel>Username</FormLabel>
                   <Input
-                    type={showPassword ? "text" : "password"}
+                    type="text"
                     onChange={formik.handleChange}
-                    value={formik.values.password}
+                    value={formik.values.username}
                   />
-                  <InputRightElement h={"full"}>
-                    <Button
-                      variant={"ghost"}
-                      onClick={() =>
-                        setShowPassword((showPassword) => !showPassword)
-                      }
-                    >
-                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-                {formik.touched.password && formik.errors.password && (
-                  <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-                )}
-              </FormControl>
-              <FormControl
-                isInvalid={
-                  formik.touched.confirmationPassword &&
-                  formik.errors.confirmationPassword
-                }
-                nb={5}
-                name="confirmationPassword"
-                id="confirmationPassword"
-              >
-                <FormLabel>Confirmation Password</FormLabel>
-                <InputGroup>
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    onChange={formik.handleChange}
-                    value={formik.values.confirmationPassword}
-                  />
-                  <InputRightElement h={"full"}>
-                    <Button
-                      variant={"ghost"}
-                      onClick={() =>
-                        setShowPassword((showPassword) => !showPassword)
-                      }
-                    >
-                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-                {formik.touched.confirmationPassword &&
-                  formik.errors.confirmationPassword && (
+                  {formik.touched.username && formik.errors.username && (
                     <FormErrorMessage>
-                      {formik.errors.confirmationPassword}
+                      {formik.errors.username}
                     </FormErrorMessage>
                   )}
-              </FormControl>
-              <Stack spacing={10} pt={2}>
-                <Button
-                  loadingText="Submitting"
-                  size="lg"
-                  bg={"blue.400"}
-                  color={"white"}
-                  _hover={{
-                    bg: "blue.500",
-                  }}
-                  type="submit"
+                </FormControl>
+                <FormControl
+                  isInvalid={formik.touched.email && formik.errors.email}
+                  nb={5}
+                  name="email"
+                  id="email"
                 >
-                  Sign up
-                </Button>
+                  <FormLabel>Email address</FormLabel>
+                  <Input
+                    type="text"
+                    onChange={formik.handleChange}
+                    value={formik.values.email}
+                  />
+                  {formik.touched.email && formik.errors.email && (
+                    <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+                  )}
+                </FormControl>
+                <FormControl
+                  isInvalid={formik.touched.password && formik.errors.password}
+                  nb={5}
+                  id="password"
+                  name="password"
+                >
+                  <FormLabel>Password</FormLabel>
+                  <InputGroup>
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      onChange={formik.handleChange}
+                      value={formik.values.password}
+                    />
+                    <InputRightElement h={"full"}>
+                      <Button
+                        variant={"ghost"}
+                        onClick={() =>
+                          setShowPassword((showPassword) => !showPassword)
+                        }
+                      >
+                        {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
+                  {formik.touched.password && formik.errors.password && (
+                    <FormErrorMessage>
+                      {formik.errors.password}
+                    </FormErrorMessage>
+                  )}
+                </FormControl>
+                <FormControl
+                  isInvalid={
+                    formik.touched.confirmationPassword &&
+                    formik.errors.confirmationPassword
+                  }
+                  nb={5}
+                  name="confirmationPassword"
+                  id="confirmationPassword"
+                >
+                  <FormLabel>Confirmation Password</FormLabel>
+                  <InputGroup>
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      onChange={formik.handleChange}
+                      value={formik.values.confirmationPassword}
+                    />
+                    <InputRightElement h={"full"}>
+                      <Button
+                        variant={"ghost"}
+                        onClick={() =>
+                          setShowPassword((showPassword) => !showPassword)
+                        }
+                      >
+                        {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
+                  {formik.touched.confirmationPassword &&
+                    formik.errors.confirmationPassword && (
+                      <FormErrorMessage>
+                        {formik.errors.confirmationPassword}
+                      </FormErrorMessage>
+                    )}
+                </FormControl>
+                <Stack spacing={10} pt={2}>
+                  <Button
+                    loadingText="Submitting"
+                    size="lg"
+                    bg={"teal"}
+                    color={"white"}
+                    _hover={{
+                      bg: "black",
+                      color: "white",
+                    }}
+                    type="submit"
+                  >
+                    Sign up
+                  </Button>
+                </Stack>
+                <Stack pt={6}>
+                  <Text align={"center"}>
+                    Already a user?{" "}
+                    <Link color="#4299E1" to="/">
+                      Login
+                    </Link>
+                  </Text>
+                </Stack>
               </Stack>
-              <Stack pt={6}>
-                <Text align={"center"}>
-                  Already a user?{" "}
-                  <Link color='#4299E1' to="/" >
-                    Login
-                  </Link>
-                </Text>
-              </Stack>
-            </Stack>
-          </Box>
-        </Stack>
-      </Flex>
-    </form>
+            </Box>
+          </Stack>
+        </Flex>
+      </form>
     </Box>
   );
 }

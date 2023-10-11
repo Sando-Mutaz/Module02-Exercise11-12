@@ -16,6 +16,7 @@ import {
   Text,
   FormErrorMessage,
   useColorModeValue,
+  GridItem
 } from "@chakra-ui/react";
 import { Link, Navigate } from "react-router-dom";
 import Navbar from "./Navbar";

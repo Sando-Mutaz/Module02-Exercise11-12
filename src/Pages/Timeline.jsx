@@ -14,6 +14,8 @@ import {
   Divider,
   Grid,
   Image,
+  Stack,
+  Textarea,
 } from "@chakra-ui/react";
 import {
   FaCamera,
@@ -28,10 +30,12 @@ import {
 import { AiOutlineLike } from "react-icons/ai";
 import { BiComment, BiShare } from "react-icons/bi";
 import { SlUserFollow } from "react-icons/sl";
+import { TiSocialTwitter} from "react-icons/ti"
 import { useFormik } from "formik";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // function Tweet({ email, tweet }) {
 //   return (
@@ -136,17 +140,14 @@ function App() {
         justifyContent="space-between"
       >
         {/* Left Side (Logo) */}
-        <Box>
-          <Image
-            src="https://branditechture.agency/brand-logos/wp-content/uploads/wpdm-cache/X-by-Twitter-900x0.png"
-            alt="Twitter"
-            boxSize="60px"
-            marginLeft={"12px"}
-          />
-        </Box>
+        <Flex marginLeft={'3rem'} alignItems={'center'} alignContent={'center'}>
+          <TiSocialTwitter
+          fontSize="40px"/>
+          <Text as={"b"} fontSize={'20px'} margin={'auto'}>groupFour</Text>
+        </Flex>
 
         {/* Right Side (User Info) */}
-        <HStack spacing={2} alignItems="center">
+        <HStack spacing={2} alignItems="center" mr={'60px'}>
           {/* <Avatar size="sm" name="John Doe" src="https://placekitten.com/200/200" /> */}
           <FaUser size={"20px"} marginRight={"15px"} />
           <Text fontWeight="bold">{token}</Text>
@@ -209,23 +210,45 @@ function App() {
         {/* Main Content */}
         <Box
           flex="1"
-          p={4}
+          p={10}
           boxShadow={
             "rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px"
           }
+          width={'100%'}
         >
           {/* Tweet Input Box */}
+  
+
+          
           <form onSubmit={formik.handleSubmit}>
-            <Input
+          <Flex className="tweet-container"
+            padding={'0'}
+            left='0'
+            width={"100%"}
+            >
+              <Box boxSize={'150px'}
+              marginRight={'2%'}>
+                <Image 
+                  rounded="full"
+                  width="100%"
+                  
+                  objectFit={'cover'}
+                  src="https://pbs.twimg.com/profile_images/1329647526807543809/2SGvnHYV_400x400.jpg"/>
+                </Box>
+            <Flex flexDirection={'column'} width={"100%"}>
+            <Textarea
               name="tweet"
               value={formik.values.tweet}
               onChange={formik.handleChange}
               placeholder="What's happening?"
               mb={4}
+              width={"100%"}
+              
             />
+            
 
             {/* Icons for Gallery, Voice Recording, and Emoticons */}
-            <HStack spacing={4} mb={4}>
+            <HStack spacing={4} mb={4} position={'relative'} marginBottom={20}>
               <IconButton
                 icon={<Icon as={FaCamera} />}
                 aria-label="Gallery"
@@ -241,11 +264,16 @@ function App() {
                 aria-label="Emoticons"
                 colorScheme="teal"
               />
-              <Button right="0" colorScheme="teal" size="md" type="submit">
+              <Button ml={'auto'}  colorScheme="teal" size="md" type="submit">
                 Send Tweet
               </Button>
+              
             </HStack>
+            </Flex>
+            </Flex>
+            
           </form>
+          
 
           {/* Send Tweet Button */}
 
@@ -263,7 +291,7 @@ function App() {
             <Box
               key={index}
               boxShadow="rgba(149, 157, 165, 0.2) 0px 8px 24px"
-              margin="5%"
+              // margin="5%"
             >
               <HStack>
                 <Grid boxSize={"30px"} marginLeft={"5%"} marginTop={"3%"}>
@@ -321,12 +349,15 @@ function App() {
                       onClick={() => handleItemClick("User 1")}
                       leftIcon={<Icon as={SlUserFollow}></Icon>}
                     >
-                      {item.username}
+                      {item.name}
                     </Button>
                   </Flex>
                 </li>
               ))}
             </ul>
+            <Button margin="auto" color="teal">
+                <Link to="/user-data">See More</Link>
+            </Button>
           </Box>
         </Box>
       </Flex>

@@ -125,13 +125,17 @@ function Login() {
                 >
                   Sign in
                 </Button>
-                <Box>
+                <Box display='grid' gridTemplateColumns='1fr 1fr' columnGap='5px'>
+                  <GridItem>
                   <Text>
-                    Don't have an account?{" "}
-                    <Text color="#4299E1">
+                    Don't have an account?
+                  </Text>
+                  </GridItem>
+                  <GridItem>
+                  <Text color="#4299E1">
                       <Link to="/register">Register</Link>
                     </Text>
-                  </Text>
+                    </GridItem>
                 </Box>
               </Stack>
             </Stack>

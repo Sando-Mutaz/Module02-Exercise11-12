@@ -59,7 +59,7 @@ function UserData() {
             data.map((item) => {
               return (
                 <Tr key={item.id}>
-                  <Td>{item.name}</Td>
+                  <Td>{item.username}</Td>
                   <Td>{item.email}</Td>
                   <Td>{item.password}</Td>
                 </Tr>

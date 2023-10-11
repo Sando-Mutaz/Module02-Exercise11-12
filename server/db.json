@@ -2,19 +2,19 @@
   "users": [
     {
       "id": 1,
-      "name": "budi",
+      "username": "budi",
       "email": "budi@gmail.com",
       "password": "asd1234"
     },
     {
       "id": 2,
-      "name": "dodi",
+      "username": "dodi",
       "email": "dodi@gmail.com",
       "password": "asd1234"
     },
     {
       "id": 3,
-      "name": "didi",
+      "username": "didi",
       "email": "didi@gmail.com",
       "password": "asd1234"
     }

@@ -28,7 +28,7 @@ function UserData() {
 
     const fetchData = async () => {
         try {
-          const response = await axios.get ("http://localhost:3000/user");
+          const response = await axios.get ("http://localhost:3000/users");
           // const res = await response.json()
           setData(response.data);
           console.log(response)

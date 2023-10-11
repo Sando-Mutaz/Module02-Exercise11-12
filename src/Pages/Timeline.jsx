@@ -349,7 +349,7 @@ function App() {
                       onClick={() => handleItemClick("User 1")}
                       leftIcon={<Icon as={SlUserFollow}></Icon>}
                     >
-                      {item.name}
+                      {item.username}
                     </Button>
                   </Flex>
                 </li>

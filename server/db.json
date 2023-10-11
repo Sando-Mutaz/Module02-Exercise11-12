@@ -18,5 +18,32 @@
       "email": "didi@gmail.com",
       "password": "asd1234"
     }
+  ],
+  "tweets": [
+    {
+      "id": 1,
+      "email": "dodi@gmail.com",
+      "tweet": "Test"
+    },
+    {
+      "email": "dodi@gmail.com",
+      "tweet": "",
+      "id": 2
+    },
+    {
+      "email": "dodi@gmail.com",
+      "tweet": "",
+      "id": 3
+    },
+    {
+      "email": "dodi@gmail.com",
+      "tweet": "abcde",
+      "id": 4
+    },
+    {
+      "email": "dodi@gmail.com",
+      "tweet": "v ii  ",
+      "id": 5
+    }
   ]
 }

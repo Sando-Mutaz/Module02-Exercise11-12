@@ -46,6 +46,8 @@ function Login() {
       setIsLoggedIn(true)
       alert('Login Sukses')
       console.log('Login berhasil');
+      console.log(email)
+      localStorage.setItem("token", email)
     } else {
       alert('Email utowo Passwordmu salah')
       console.error('Login gagal');

@@ -10,6 +10,8 @@ import {
   Heading,
   VStack,
 } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
+import login from '../Redux/Reducer/AuthReducer'
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -20,35 +22,38 @@ function Login() {
   const [usersData, setUsersData] = useState([]);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    // const { name, value } = e.target;
+    // setFormData({ ...formData, [name]: value });
+
+    dispatch(login(e));
   };
 
-  const handleLogin = () => {
-    const { email, password } = formData;
+  // const handleLogin = () => {
+  //   const { email, password } = formData;
 
-    // Cek login berdasarkan data JSON yang sudah dimuat
-    const user = usersData.find((user) => user.email === email && user.password === password);
+  //   // Cek login berdasarkan data JSON yang sudah dimuat
+  //   const user = usersData.find((user) => user.email === email && user.password === password);
 
 
-    if (user) {
-      setIsLoggedIn(true)
-      alert('Login Berhasil')
-      console.log('Login berhasil');
-    } else {
-      alert('Email atau Password yang anda masukkan salah')
-      console.error('Login gagal');
-    }
-  };
+  //   if (user) {
+  //     setIsLoggedIn(true)
+  //     alert('Login Berhasil')
+  //     console.log('Login berhasil');
+  //   } else {
+  //     alert('Email atau Password yang anda masukkan salah')
+  //     console.error('Login gagal');
+  //   }
+  // };
 
-  useEffect(() => {
-    // Gunakan Axios untuk mengambil data JSON
-    Axios.get('http://localhost:3000/users')
-      .then((response) => setUsersData(response.data))
-      .catch((error) => console.error('Error loading data:', error));
-  }, []);
+  // useEffect(() => {
+  //   // Gunakan Axios untuk mengambil data JSON
+  //   Axios.get('http://localhost:3000/users')
+  //     .then((response) => setUsersData(response.data))
+  //     .catch((error) => console.error('Error loading data:', error));
+  // }, []);
 
   return (
     <Box p={4} borderWidth="1px" borderRadius="md" maxW="400px" mx="auto">

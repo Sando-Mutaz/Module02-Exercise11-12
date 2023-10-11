@@ -10,10 +10,15 @@ import Login from "./Pages/login";
 import Register from "./Pages/register";
 import UserData from "./Pages/UserData";
 import Timeline from "./Pages/Timeline";
+import {Provider} from 'react-redux'
+import {store} from './Redux/Store'
+import Auth from './Components/Auth'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
+  // <Provider store={store}>
+  //   <Auth>
     <ChakraProvider>
       <BrowserRouter>
         <Routes>
@@ -24,7 +29,9 @@ root.render(
         </Routes>
       </BrowserRouter>
     </ChakraProvider>
-  </React.StrictMode>
+    // </Auth>
+    // </Provider>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
